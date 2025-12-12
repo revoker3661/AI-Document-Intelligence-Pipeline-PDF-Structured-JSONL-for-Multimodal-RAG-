@@ -1,0 +1,4 @@
+MODEL:
+  ROI_HEADS:
+    NUM_CLASSES: 5
+  MASK_ON: False

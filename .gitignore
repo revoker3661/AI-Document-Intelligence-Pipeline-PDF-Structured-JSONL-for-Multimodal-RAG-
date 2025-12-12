@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+*.log
+data/
+datasets/
+checkpoints/
+.idea/
+.vSCode/
+input_data/
+models/
+*.pth
+debug_tools/
+pdf_check/
+tests/
+*.pdf
