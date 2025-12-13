@@ -150,7 +150,7 @@ Each line in the structured_output.jsonl file represents a distinct element:
 Table Example:
 
 JSON
-
+```bash 
 {
   "type": "Table",
   "page_number": 42,
@@ -159,9 +159,9 @@ JSON
   "html_table": "<table><tr><td>Drug</td><td>Dose</td></tr>...</table>",
   "coordinates": [50, 100, 500, 400]
 }
-
+```
 Figure Example:
-
+```bash 
 JSON
 
 {
@@ -170,6 +170,7 @@ JSON
   "image_path": "output_data/BookName/images/page_42_element_2_Figure.png",
   "ocr_text": "Figure 1.2: Diagram of the Heart"
 }
+```
 ### 🤝 Contributing
 Contributions are welcome! Please fork the repository and create a pull request for any feature enhancements or bug fixes.
 
