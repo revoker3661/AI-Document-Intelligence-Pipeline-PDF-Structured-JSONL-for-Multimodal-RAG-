@@ -70,7 +70,8 @@ git clone [https://github.com/revoker3661/AI-Document-Intelligence-Pipeline-PDF-
 Bash
 
 cd AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-
-Step 3: Create Virtual Environment
+
+### Step 3: Create Virtual Environment
 It is best practice to use a generic virtual environment to manage dependencies.
 
 Bash
