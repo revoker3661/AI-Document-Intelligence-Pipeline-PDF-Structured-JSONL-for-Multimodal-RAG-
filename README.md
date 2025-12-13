@@ -67,8 +67,7 @@ Ensure you have the following installed:
 
 ```bash
 git clone [https://github.com/revoker3661/AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-.git](https://github.com/revoker3661/AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-.git)
-Bash
-
+```
 cd AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-
 
 ### Step 3: Create Virtual Environment
@@ -76,40 +75,42 @@ It is best practice to use a generic virtual environment to manage dependencies.
 
 ```bash
 python -m venv venv
+```
+
 Activate the environment:
 Windows:
 ```bash
 venv\Scripts\activate
+```
+
 Linux/Mac:
 ```bash
 source venv/bin/activate
-Step 4: Install Dependencies
+```
+### Step 4: Install Dependencies
 Install the core libraries from the requirements file.
-
-Bash
-
+``` bash
 pip install -r requirements_extra.txt
-Step 5: Install Detectron2 (Manual)
+```
+### Step 5: Install Detectron2 (Manual)
 Detectron2 requires a manual build to link correctly with CUDA. If the previous step failed for Detectron2, run:
-
-Bash
-
+```bash 
 chmod +x install_detectron2_manual.sh
-Bash
-
+```
+```bash
 ./install_detectron2_manual.sh
-Step 6: Initialize Models (Warm Cache)
+```
+### Step 6: Initialize Models (Warm Cache)
 Download the heavy model weights (LayoutParser, OCR, Transformers) to your local cache once before running.
-
-Bash
-
+``` bash 
 python warm_cache_models.py
-Step 7: Validate System
+```
+### Step 7: Validate System
 Run the validation script to check if GPU, CUDA, and libraries are linked correctly.
 
-Bash
-
+```bash 
 python validate_setup.py
+```
 ▶️ Usage
 1. Prepare Input Data
 Create an input_data folder and place your PDFs inside batch folders.
@@ -125,9 +126,9 @@ input_data/
 2. Run the Extractor
 Execute the main script to start processing.
 
-Bash
-
+```bash
 python extract_batch.py
+```
 3. Check Outputs
 The results will be saved in the output_data directory.
 
@@ -166,7 +167,7 @@ JSON
   "image_path": "output_data/BookName/images/page_42_element_2_Figure.png",
   "ocr_text": "Figure 1.2: Diagram of the Heart"
 }
-🤝 Contributing
+### 🤝 Contributing
 Contributions are welcome! Please fork the repository and create a pull request for any feature enhancements or bug fixes.
 
 Repository Link: https://github.com/revoker3661/AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-
