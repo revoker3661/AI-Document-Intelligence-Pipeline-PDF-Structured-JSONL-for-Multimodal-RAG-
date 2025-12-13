@@ -116,13 +116,14 @@ python validate_setup.py
 Create an input_data folder and place your PDFs inside batch folders.
 
 Structure:
-
+```bash 
 Plaintext
 
 input_data/
 └── Batch_01/
     ├── Harrison_Medicine.pdf
     └── Gray_Anatomy.pdf
+```
 2. Run the Extractor
 Execute the main script to start processing.
 
@@ -133,7 +134,7 @@ python extract_batch.py
 The results will be saved in the output_data directory.
 
 Structure:
-
+```bash
 Plaintext
 
 output_data/
@@ -142,6 +143,7 @@ output_data/
     └── images/
         ├── page_10_figure_1.png
         └── page_15_figure_2.png
+```
 📄 Output Data Example
 Each line in the structured_output.jsonl file represents a distinct element:
 
@@ -157,6 +159,7 @@ JSON
   "html_table": "<table><tr><td>Drug</td><td>Dose</td></tr>...</table>",
   "coordinates": [50, 100, 500, 400]
 }
+
 Figure Example:
 
 JSON
