@@ -74,20 +74,14 @@ cd AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-
 ### Step 3: Create Virtual Environment
 It is best practice to use a generic virtual environment to manage dependencies.
 
-Bash
-
+```bash
 python -m venv venv
 Activate the environment:
-
 Windows:
-
-Bash
-
+```bash
 venv\Scripts\activate
 Linux/Mac:
-
-Bash
-
+```bash
 source venv/bin/activate
 Step 4: Install Dependencies
 Install the core libraries from the requirements file.
