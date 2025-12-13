@@ -1,156 +1,177 @@
-# AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-
-A robust, production-grade pipeline converting complex Medical PDFs into structured, RAG-ready JSONL datasets. Features smart table merging, multimodal extraction, and dynamic layout analysis using Detectron2 &amp; PaddleOCR.
-Plaintext
-
-Medical-RAG-Pipeline/
-│
-├── input_data/                  # (Auto-created) Yahan apni PDF books rakhein
-│   ├── Batch_01/
-│   │   ├── book1.pdf
-│   │   └── book2.pdf
-│   └── Batch_02/
-│
-├── output_data/                 # (Auto-created) Processed JSONL aur Images yahan aayenge
-│   ├── book1/
-│   │   ├── structured_output.jsonl
-│   │   └── images/
-│
-├── logs/                        # (Auto-created) Execution logs yahan save honge
-│
-├── models/                      # (Optional) Agar manual model download karke rakhne ho
-│
-├── extract_batch.py             # 🧠 MAIN BRAIN: Orchestrator script (Plan 18)
-├── validate_setup.py            # 🛠 TOOL: Environment checker (GPU/Libs)
-├── warm_cache_models.py         # 📥 SETUP: Models ko pehli baar download karne ke liye
-├── requirements_extra.txt       # 📋 LIST: Sabhi libraries ki list
-├── install_detectron2_manual.sh # 🐚 SCRIPT: Detectron2 install helper
-│
-└── README.md                    # 📖 GUIDE: Jo hum niche likh rahe hain
-2. Professional GitHub README.md
-Is content ko copy karke README.md file bana lo. Maine "Models Download" aur "YouTube Video" wale section wese hi daale hain jaise tumne kaha tha.
-
 Markdown
 
-# 🏥 Medical Book Extraction Pipeline for RAG (Plan 18)
+# AI Document Intelligence Pipeline: PDF to Structured JSONL (Plan 18)
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.3%2B-red)
-![Status](https://img.shields.io/badge/Pipeline-Production%20Ready-success)
-![GPU](https://img.shields.io/badge/GPU-Required-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Pipeline](https://img.shields.io/badge/Plan--18-Robust-orange)
 
-An advanced, industrial-grade pipeline designed to convert complex Medical Textbooks (PDFs) into structured **JSONL** format suitable for **RAG (Retrieval-Augmented Generation)** models. 
-
-This project implements **"Plan 18" architecture**, featuring Smart Table Merging, Dynamic Header/Footer detection, and Multi-Model Cross-Validation (LayoutParser + Table Transformer + PaddleOCR).
+**An advanced, production-grade ETL pipeline designed to convert complex Medical Textbooks into high-fidelity, multimodal JSONL datasets suitable for RAG (Retrieval-Augmented Generation) and Large Multimodal Models (LMMs).**
 
 ---
 
-## ⚡ Key Features
+## 🖼️ Project Visualization
 
-* **📄 Intelligent Layout Analysis:** Uses **Detectron2 (PubLayNet)** to segment pages into Text, Tables, Figures, and Lists.
-* **📊 Smart Table Extraction:** Implements an **IoU-based Smart Merging** algorithm to reconstruct tables accurately using **Microsoft Table Transformer**.
-* **🧠 Dynamic Filtering:** Automatically detects and removes Headers and Footers based on recurring patterns in the book.
-* **👁️ High-Quality OCR:** Powered by **PaddleOCR (GPU)** for robust text extraction from images and non-selectable PDFs.
-* **🛡️ Robustness:** Includes checkpointing (resume where you left off) and detailed logging.
+![Project Thumbnail](assets/thumbnail.png)
+
+*(This pipeline transforms raw PDFs into structured data, extracting text, tables, and images with semantic preservation.)*
 
 ---
 
-## 🛠️ Prerequisites
+## 📖 Project Overview
 
-Before starting, ensure your system meets these requirements:
+This project implements the **"Plan 18" Architecture**, a robust document intelligence system specifically engineered for the medical domain. Unlike standard PDF parsers that output messy text, this pipeline acts as a "Structural Surgeon" for documents.
 
-1.  **OS:** Linux (Recommended) or Windows with WSL2.
-2.  **GPU:** NVIDIA GPU with CUDA 12.1 support (Required for efficient processing).
-3.  **Python:** Version 3.8 or higher.
-4.  **System Libraries:** `libstdc++` (Modern version required for OCR).
+It utilizes a multi-model approach (LayoutParser, Detectron2, PaddleOCR, and Table Transformers) to intelligently segment pages, reconstruct complex tables, and extract figures—all while filtering out noise like dynamic headers and footers. The final output is a strictly formatted **JSONL** file, ready to be indexed into Vector Databases (like Pinecone/Milvus) for high-precision RAG applications.
 
 ---
 
-## 🚀 Installation Guide (Step-by-Step)
+## ✨ Core Features
 
-Follow these steps strictly to set up the environment.
+* **📄 Intelligent Layout Analysis:** Leverages **Detectron2 (PubLayNet)** to distinguish between Text, Titles, Lists, Tables, and Figures with high precision.
+* **📊 Smart Table Reconstruction:** Implements a custom **IoU (Intersection over Union)** based merging algorithm combined with **Microsoft Table Transformer** to preserve complex table structures.
+* **🧠 Dynamic Header/Footer Filtering:** Automatically learns the layout of a book to remove repetitive headers and footers, ensuring clean data ingestion.
+* **👁️ GPU-Accelerated OCR:** Powered by **PaddleOCR** for extracting text from images and non-selectable PDFs.
+* **🖼️ Multimodal Extraction:** Automatically crops and saves figures/charts as separate image files, linking them in the JSONL metadata for Multimodal RAG.
+* **🛡️ Robust Error Handling:** Includes checkpointing (resume capability) and detailed logging to handle large batch processing without failure.
 
-### 1. Clone the Repository
+---
+
+## 🛠️ Tech Stack & Architecture
+
+This pipeline is built on a modular architecture to ensure scalability and maintainability.
+
+| Component | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Orchestration** | Python 3.10+ | Main logic handling file I/O and pipeline flow. |
+| **Layout Model** | Detectron2 (PubLayNet) | Detecting page segments (Text vs Table vs Image). |
+| **OCR Engine** | PaddleOCR (GPU) | High-accuracy text extraction from image blocks. |
+| **Table Structure** | Table Transformer | Deep learning model to recognize rows/columns. |
+| **Data Processing** | NumPy / OpenCV | Image preprocessing and coordinate manipulation. |
+| **Output Format** | JSONL | Line-delimited JSON for scalable streaming/indexing. |
+
+---
+
+## 🚀 Setup & Installation Guide
+
+Follow these steps to set up the pipeline on your local machine or cloud server.
+
+### Step 1: Prerequisites
+Ensure you have the following installed:
+* **OS:** Linux (Recommended) or Windows with WSL2.
+* **GPU:** NVIDIA GPU with CUDA 12.x support (Critical for performance).
+* **Git:** To clone the repository.
+
+### Step 2: Clone the Repository
+
 ```bash
-git clone [https://github.com/YOUR_USERNAME/Medical-RAG-Pipeline.git](https://github.com/YOUR_USERNAME/Medical-RAG-Pipeline.git)
-cd Medical-RAG-Pipeline
-2. Create Virtual Environment
+git clone [https://github.com/revoker3661/AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-.git](https://github.com/revoker3661/AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-.git)
+Bash
+
+cd AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-
+Step 3: Create Virtual Environment
+It is best practice to use a generic virtual environment to manage dependencies.
+
 Bash
 
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
-3. Install Core Dependencies
-We have a curated requirements file. Install it using pip:
+Activate the environment:
+
+Windows:
+
+Bash
+
+venv\Scripts\activate
+Linux/Mac:
+
+Bash
+
+source venv/bin/activate
+Step 4: Install Dependencies
+Install the core libraries from the requirements file.
 
 Bash
 
 pip install -r requirements_extra.txt
-4. Install Detectron2 (Crucial Step)
-Detectron2 can be tricky. If the command above fails for Detectron2, use our manual script:
+Step 5: Install Detectron2 (Manual)
+Detectron2 requires a manual build to link correctly with CUDA. If the previous step failed for Detectron2, run:
 
 Bash
 
 chmod +x install_detectron2_manual.sh
-./install_detectron2_manual.sh
-📥 Model Setup (First Time Run)
-This pipeline uses large models (LayoutParser, Table Transformer, PaddleOCR). Instead of downloading them during runtime, run the warmer script first to download and cache them locally.
+Bash
 
-Run this command once:
+./install_detectron2_manual.sh
+Step 6: Initialize Models (Warm Cache)
+Download the heavy model weights (LayoutParser, OCR, Transformers) to your local cache once before running.
 
 Bash
 
 python warm_cache_models.py
-This script will download all necessary weights to ~/.torch/ and ~/.paddleocr/ directories.
-
-✅ Validate Setup
-Before running the main processor, run the validation tool to check if GPU, CUDA, and Libraries are linked correctly:
+Step 7: Validate System
+Run the validation script to check if GPU, CUDA, and libraries are linked correctly.
 
 Bash
 
 python validate_setup.py
-If you see "✅ VALIDATION COMPLETE", you are ready to go!
-
-▶️ How to Run
+▶️ Usage
 1. Prepare Input Data
-Create a folder named input_data and add your PDF files inside batch folders:
+Create an input_data folder and place your PDFs inside batch folders.
+
+Structure:
 
 Plaintext
 
 input_data/
-    Batch_01/
-        Anatomy_Book.pdf
-        Physiology.pdf
-2. Start Processing
-Run the main orchestrator script:
+└── Batch_01/
+    ├── Harrison_Medicine.pdf
+    └── Gray_Anatomy.pdf
+2. Run the Extractor
+Execute the main script to start processing.
 
 Bash
 
 python extract_batch.py
 3. Check Outputs
-The script will generate an output_data folder.
+The results will be saved in the output_data directory.
 
-JSONL: Contains the structured text and metadata.
+Structure:
 
-Images: Contains extracted figures/charts cropped from the pages.
+Plaintext
 
-🎥 Video Tutorial
-Click the image below to watch the complete step-by-step setup and demo video on YouTube.
+output_data/
+└── Harrison_Medicine/
+    ├── structured_output.jsonl
+    └── images/
+        ├── page_10_figure_1.png
+        └── page_15_figure_2.png
+📄 Output Data Example
+Each line in the structured_output.jsonl file represents a distinct element:
 
-(Note: The video demonstrates how to configure the paths and interprets the JSONL output.)
-
-📄 Output Structure (JSONL)
-Each line in the output file represents a single element (Text block, Table, or Image):
+Table Example:
 
 JSON
 
 {
   "type": "Table",
-  "page_number": 45,
-  "coordinates": [100, 200, 500, 600],
+  "page_number": 42,
   "confidence": 0.98,
-  "text": "Full text content of the table...",
-  "html_table": "<table><tr><td>Cell Data</td>...</table>"
+  "text": "Table 1: Dosage guidelines...",
+  "html_table": "<table><tr><td>Drug</td><td>Dose</td></tr>...</table>",
+  "coordinates": [50, 100, 500, 400]
 }
-📞 Contact & Support
-For issues or contributions, please open an issue in this repository.
+Figure Example:
 
-Maintainer: [Your Name]
+JSON
+
+{
+  "type": "Figure",
+  "page_number": 42,
+  "image_path": "output_data/BookName/images/page_42_element_2_Figure.png",
+  "ocr_text": "Figure 1.2: Diagram of the Heart"
+}
+🤝 Contributing
+Contributions are welcome! Please fork the repository and create a pull request for any feature enhancements or bug fixes.
+
+Repository Link: https://github.com/revoker3661/AI-Document-Intelligence-Pipeline-PDF-Structured-JSONL-for-Multimodal-RAG-
